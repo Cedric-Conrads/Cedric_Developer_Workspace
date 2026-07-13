@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Landingpage</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <nav id="home">
+
+            <h2>SoundWave</h2>
+
+            <div class="menu-toggle">☰</div>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#preise">Preise</a>
+                <a href="#kontakt">Kontakt</a>
+            </div>
+
+        </nav>
+
+        <section class="hero" id="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-text">
+
+                    <h1>Musik hören. Jederzeit. Überall.</h1>
+
+                    <p>
+                        Entdecke Millionen Songs, Playlists und Podcasts.
+                    </p>
+
+                    <button>Jetzt starten</button>
+
+                </div>
+
+            </div>
+
+            <div class="hero-image">
+                <img src="music.png.jpg" alt="Music">
+            </div>
+
+        </section>
+
+        <section class="features" id="features">
+
+            <div class="feature-card">
+                <h3>🎵 Millionen Songs</h3>
+
+                <p>
+                    Höre deine Lieblingsmusik jederzeit.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>📱 Offline Modus</h3>
+
+                <p>
+                    Lade Songs herunter und höre offline.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>⭐ Premium Qualität</h3>
+
+                <p>
+                    Musik in bester Audioqualität.
+                </p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+
+</body>
+
+</html>
