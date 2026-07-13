@@ -1,0 +1,3 @@
+# .gitignore
+
+(Wird später ergänzt.)

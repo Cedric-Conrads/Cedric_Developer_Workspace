@@ -1,0 +1,8 @@
+| Befehl                  | Wie oft?                                          |
+| ----------------------- | ------------------------------------------------- |
+| `git init`              | Einmal pro Repository                             |
+| `git remote add origin` | Einmal pro Repository                             |
+| `git status`            | So oft du möchtest                                |
+| `git add .`             | Nach Änderungen                                   |
+| `git commit`            | Nach Änderungen                                   |
+| `git push`              | Wenn du neue Commits zu GitHub hochladen möchtest |
