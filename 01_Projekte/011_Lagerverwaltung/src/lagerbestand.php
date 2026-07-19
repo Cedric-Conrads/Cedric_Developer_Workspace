@@ -38,6 +38,8 @@ $result = $stmt->get_result();
 
     <th>Lagerort</th>
 
+    <th>Optionen</th>
+
     </tr>
 
     <?php while ($row = $result->fetch_assoc()) { ?>
@@ -47,8 +49,12 @@ $result = $stmt->get_result();
     <td><?= $row["name"] ?></td>
     <td><?= $row["bestand"] ?></td>
     <td><?= $row["lagerort"] ?></td>
-
-
+    <td> 
+       
+    <a href="bearbeiten.php?artikelnummer=<?= $row["artikelnummer"] ?>">
+        Bearbeiten
+    </a>
+</td> 
 
 
         </tr>

@@ -1,0 +1,29 @@
+1️⃣ Status prüfen
+git status
+
+➡️ Was hat sich geändert?
+
+2️⃣ Änderungen vormerken
+git add .
+
+➡️ Alle Änderungen für den Commit vorbereiten.
+
+3️⃣ Commit erstellen
+git commit -m "Dynamische Lagerbestandstabelle erstellt"
+
+➡️ Ein "Speicherpunkt" mit einer aussagekräftigen Beschreibung.
+
+4️⃣ Auf GitHub hochladen
+git push
+
+➡️ Änderungen ins Remote Repository übertragen.
+
+5️⃣ Kontrolle
+git status
+
+Wenn dort steht:
+
+nothing to commit, working tree clean
+
+es wurde synchronisiert 
+
