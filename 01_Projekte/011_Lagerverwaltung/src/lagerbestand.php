@@ -54,6 +54,14 @@ $result = $stmt->get_result();
     <a href="bearbeiten.php?artikelnummer=<?= $row["artikelnummer"] ?>">
         Bearbeiten
     </a>
+
+<a
+    href="delete_article.php?artikelnummer=<?= $row["artikelnummer"] ?>"
+    onclick="return confirm('Möchten Sie diesen Artikel wirklich löschen?');"
+>
+    Löschen
+</a>
+
 </td> 
 
 
