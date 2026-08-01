@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lageverwaltung</title>
+    <title>Lagerverwaltung</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     
     <header>
-        <h1>Lageverwaltung</h1>
+        <h1>Lagerverwaltung</h1>
     </header>
 
     <main>
         <section class="content">
-            <h2>Willkommen zur Lageverwaltung</h2>
-            <p>Hier können Sie Ihre Lageinformationen verwalten und aktualisieren.</p>
+            <h2>Willkommen zur Lagerverwaltung</h2>
+            <p>Hier können Sie Ihre Lagerinformationen verwalten und aktualisieren.</p>
         </section>
     </main>
 

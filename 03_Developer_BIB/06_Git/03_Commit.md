@@ -1,56 +1,58 @@
-# Git Commit
+# Git-Commit – Konzept
 
-## Was ist ein Commit?
+## Was ist das?
 
-Ein Commit ist ein gespeicherter Meilenstein eines Projekts.
+Ein Commit ist ein unveränderlich identifizierter Projektstand mit
+Metadaten und Verweis auf vorherige Commits.
 
-Git speichert dabei:
+## Warum brauche ich das?
 
-- den aktuellen Stand
-- den Autor
-- Datum und Uhrzeit
-- eine Commit-Nachricht
-
----
+Kleine, fachlich zusammenhängende Commits machen Entwicklung,
+Code-Reviews, Fehlersuche und Rücknahmen nachvollziehbar.
 
 ## Syntax
 
-git commit -m "Nachricht"
+```bash
+git commit -m "Artikelsuche mit LIKE ergänzen"
+```
 
----
+## Erklärung
 
-## Bedeutung
+Ein Commit enthält den Snapshot der gestagten Inhalte, Autor,
+Zeitstempel, Nachricht und Eltern-Commit. Die eindeutige Commit-ID ist ein
+Hash. Nicht gestagte Änderungen bleiben im Working Tree und gehören nicht
+automatisch zum Commit.
 
-git
-=
-Git-Programm
+Gute Nachrichten beschreiben in Befehlsform, was der Commit bewirkt:
+„Validierung für negative Bestände ergänzen“ statt „Sachen geändert“.
 
-commit
-=
-Erstellt einen neuen Meilenstein.
+## Beispiel
 
--m
-=
-message
+```text
+Schlecht: update
+Besser: Artikelsuche ergänzen
+Gut: Artikelsuche per Prepared Statement absichern
+```
 
-Die Nachricht beschreibt, was in diesem Commit geändert wurde.
+## Typische Fehler
 
----
-
-## Beispiele
-
-git commit -m "Initialen Developer Workspace erstellt"
-
-git commit -m "Login-System fertig"
-
-git commit -m "CRUD vervollständigt"
-
-git commit -m "Passwortgenerator erweitert"
-
----
+- Ein Commit mischt Bugfix, Formatierung und neue Funktion.
+- Nachricht ist leer oder nichtssagend.
+- Ungeprüfte gestagte Dateien werden aufgenommen.
+- Zugangsdaten werden committed; späteres Löschen reicht nicht aus der Historie.
+- Commit wird mit Backup oder Remote-Upload gleichgesetzt.
 
 ## Merksatz
 
-📸 Ein Commit ist wie ein Foto des aktuellen Projektstands.
+**Ein Commit ist ein beschrifteter, lokaler Meilenstein der ausgewählten Änderungen.**
 
-Git speichert diesen Stand dauerhaft im Repository.
+## Verwandte Themen
+
+- [git commit – Befehl](05_Git_Commit_Befehl.md)
+- [Git Add](04_Git_Add.md)
+- [Git Log](06_Git_Log.md)
+
+## Prüfungswissen
+
+Atomare Commits, aussagekräftige Nachrichten und Nachvollziehbarkeit sind
+wichtige Qualitätsmerkmale.

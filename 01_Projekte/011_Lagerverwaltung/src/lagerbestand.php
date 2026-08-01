@@ -6,13 +6,34 @@ if ($connection->connect_error) {
     die("Verbindung fehlgeschlagen: " . $connection->connect_error);
 }
 
+if (isset($_GET["suche"])) {
 
-$stmt = $connection->prepare(
-    "Select * FROM artikel"
+    $suche = $_GET["suche"];
+
+} else {
+
+    $suche = "";
+
+}
+
+
+$suche = "%" . $suche . "%";
+
+$stmt = $connection->prepare("
+    SELECT *
+    FROM artikel
+    WHERE name LIKE ? OR artikelnummer LIKE ?
+");
+
+$stmt->bind_param(
+    "ss",
+    $suche,
+    $suche
 );
-$stmt->execute();
-$result = $stmt->get_result();
 
+$stmt->execute();
+
+$result = $stmt->get_result();
 ?>
 
 
@@ -21,13 +42,21 @@ $result = $stmt->get_result();
 <html lang="de">
 <head>
     <title>Lagerbestand</title>
+
 </head>
 
 <body>
 
-    <table>
 
-    <tr>
+<form method="get" action="lagerbestand.php"> 
+   <input type="text" name="suche" placeholder="z. B. Hammer">
+
+    <button>Suche</button> 
+</form>
+
+<table>
+
+<tr>
             
 
     <th>Artikelnummer</th>

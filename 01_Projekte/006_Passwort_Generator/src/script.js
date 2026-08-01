@@ -1,4 +1,3 @@
-alert("JavaScript ist verbunden");
 
 const lengthInput = document.getElementById("length");
 const generateButton = document.getElementById("generate-btn");

@@ -1,12 +1,17 @@
 <?php
 
-$connection = new mysqli('localhost', 'root', '', 'lagerverwaltung');
+$connection = new mysqli(
+    'localhost',
+    'root',
+    '',
+    'lagerverwaltung'
+);
 
 if ($connection->connect_error) {
     die("Verbindung fehlgeschlagen: " . $connection->connect_error);
 }
 
- $artikelnummer = $_GET["artikelnummer"];
+$artikelnummer = $_GET["artikelnummer"];
 
 if (isset($_POST["name"])) {
     $name = $_POST["name"];
@@ -36,27 +41,23 @@ $stmt = $connection->prepare(
      WHERE artikelnummer = ?"
 );
 
-$stmt->bind_param("s", $artikelnummer);
+$stmt->bind_param(
+    "s",
+    $artikelnummer
+);
 
 $stmt->execute();
 
-
-
 $result = $stmt->get_result();
-
 $row = $result->fetch_assoc();
 
-
-
 ?>
-
-
-
-
 
 <form
     method="POST"
     action="bearbeiten.php?artikelnummer=<?= $artikelnummer; ?>"
+
+   
 >
     <input
         type="text"
