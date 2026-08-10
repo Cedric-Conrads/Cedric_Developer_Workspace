@@ -1,16 +1,35 @@
 <?php
 
-$artikelnummer = $_POST['artikelnummer'];
-$name = $_POST['name'];
+require_once "db.php";
+
+
+$artikelnummer = trim($_POST['artikelnummer']);
+$name = trim($_POST['name']);
 $bestand = $_POST['bestand'];
-$lagerort = $_POST['lagerort'];
+$lagerort = trim($_POST['lagerort']);
 
-
-$connection = new mysqli('localhost', 'root', '', 'lagerverwaltung');
-
-if ($connection->connect_error) {
-    die("Verbindung fehlgeschlagen: " . $connection->connect_error);
+if (empty ($artikelnummer))  {
+    echo "Artikelnummer fehlt";
+    exit;
 }
+if (empty ($name))  {
+    echo "Name fehlt";
+    exit;
+}
+if ($bestand < 0) {
+    echo "Bestand darf nicht negativ sein.";
+    exit;
+}
+
+
+if (empty ($lagerort))  {
+    echo "Lagerort fehlt";
+    exit;
+}
+
+
+
+
 
 
 $stmt = $connection->prepare(
@@ -27,8 +46,21 @@ $lagerort
 
 );
 
-$stmt->execute();
+try {
+    $stmt->execute();
 
-header ("Location: index.php");
+} catch (mysqli_sql_exception $e) {
 
+    if ($e->getCode() === 1062) {
+        echo "Artikelnummer existiert bereits.";
+        exit;
+    } else {
+        echo "Fehler.";
+        exit;
+    }
+
+} 
+header("Location: index.php?status=success");
 exit;
+
+

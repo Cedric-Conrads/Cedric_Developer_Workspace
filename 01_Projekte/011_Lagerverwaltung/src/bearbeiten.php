@@ -1,15 +1,6 @@
 <?php
 
-$connection = new mysqli(
-    'localhost',
-    'root',
-    '',
-    'lagerverwaltung'
-);
-
-if ($connection->connect_error) {
-    die("Verbindung fehlgeschlagen: " . $connection->connect_error);
-}
+require_once "db.php";
 
 $artikelnummer = $_GET["artikelnummer"];
 
@@ -17,6 +8,18 @@ if (isset($_POST["name"])) {
     $name = $_POST["name"];
     $bestand = $_POST["bestand"];
     $lagerort = $_POST["lagerort"];
+
+
+
+    if ($bestand === "") {
+    echo "Bestand fehlt.";
+    exit;
+}
+
+if ($bestand < 0) {
+    echo "Bestand darf nicht negativ sein.";
+    exit;
+}
 
     $stmt = $connection->prepare(
         "UPDATE artikel
@@ -33,6 +36,9 @@ if (isset($_POST["name"])) {
     );
 
     $stmt->execute();
+
+header("Location: lagerbestand.php");
+exit();
 }
 
 $stmt = $connection->prepare(

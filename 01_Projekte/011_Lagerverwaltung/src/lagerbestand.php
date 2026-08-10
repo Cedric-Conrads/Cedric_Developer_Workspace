@@ -1,10 +1,5 @@
 <?php
-
-$connection = new mysqli('localhost', 'root', '', 'lagerverwaltung');
-
-if ($connection->connect_error) {
-    die("Verbindung fehlgeschlagen: " . $connection->connect_error);
-}
+require_once "db.php";
 
 if (isset($_GET["suche"])) {
 
@@ -33,6 +28,8 @@ $stmt->bind_param(
 
 $stmt->execute();
 
+
+
 $result = $stmt->get_result();
 ?>
 
@@ -54,6 +51,13 @@ $result = $stmt->get_result();
     <button>Suche</button> 
 </form>
 
+
+<?php
+if ($result->num_rows === 0) {
+    echo "Keine Artikel gefunden.";
+}
+?>
+
 <table>
 
 <tr>
@@ -71,14 +75,18 @@ $result = $stmt->get_result();
 
     </tr>
 
+
+
     <?php while ($row = $result->fetch_assoc()) { ?>
 
   <tr>
-    <td><?= $row["artikelnummer"] ?></td>
-    <td><?= $row["name"] ?></td>
-    <td><?= $row["bestand"] ?></td>
-    <td><?= $row["lagerort"] ?></td>
+    <td><?= htmlspecialchars($row["artikelnummer"]) ?></td>
+    <td><?= htmlspecialchars($row["name"]) ?></td>
+    <td><?= htmlspecialchars($row["bestand"]) ?></td>
+    <td><?= htmlspecialchars($row["lagerort"]) ?></td>
     <td> 
+
+
        
     <a href="bearbeiten.php?artikelnummer=<?= $row["artikelnummer"] ?>">
         Bearbeiten
@@ -91,6 +99,9 @@ $result = $stmt->get_result();
     Löschen
 </a>
 
+
+
+
 </td> 
 
 
@@ -101,4 +112,7 @@ $result = $stmt->get_result();
     </table>
 
 </body>
+<a href="index.php">
+    Artikel anlegen
+</a>
 </html>

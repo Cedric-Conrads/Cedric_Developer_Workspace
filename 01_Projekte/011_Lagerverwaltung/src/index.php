@@ -37,13 +37,29 @@
 
     <button type="submit">Artikel speichern</button>
 
+
+    <a href="lagerbestand.php">
+    Lagerbestand anzeigen
+</a>
+
 </form>
 
     </div>
 
 
     <footer>
-        <p>&copy; 2024 Lageverwaltung. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2024 Lagerverwaltung. Alle Rechte vorbehalten.</p>
     </footer>
 
-    
+    <?php
+    if (isset($_GET["status"])) {
+
+    if ($_GET["status"] === "success") {
+        echo "Artikel erfolgreich gespeichert.";
+    }
+    elseif ($_GET["status"] === "duplicate") {
+        echo "Artikel bereits vorhanden.";
+    }
+
+}
+    ?>
