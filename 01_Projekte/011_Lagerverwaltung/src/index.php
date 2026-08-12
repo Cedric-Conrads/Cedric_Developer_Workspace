@@ -51,15 +51,14 @@
         <p>&copy; 2024 Lagerverwaltung. Alle Rechte vorbehalten.</p>
     </footer>
 
-    <?php
-    if (isset($_GET["status"])) {
+   <?php
+if (isset($_GET["status"])) {
 
     if ($_GET["status"] === "success") {
-        echo "Artikel erfolgreich gespeichert.";
-    }
-    elseif ($_GET["status"] === "duplicate") {
-        echo "Artikel bereits vorhanden.";
+        echo "<p class=\"message success\">Artikel erfolgreich gespeichert.</p>";
+    } elseif ($_GET["status"] === "duplicate") {
+        echo "<p class=\"message error\">Artikel bereits vorhanden.</p>";
     }
 
 }
-    ?>
+?>

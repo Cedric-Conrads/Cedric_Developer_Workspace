@@ -52,15 +52,10 @@ try {
 } catch (mysqli_sql_exception $e) {
 
     if ($e->getCode() === 1062) {
-        echo "Artikelnummer existiert bereits.";
+        header("Location: index.php?status=duplicate");
         exit;
     } else {
-        echo "Fehler.";
+        echo "Unbekannter Datenbankfehler.";
         exit;
     }
-
-} 
-header("Location: index.php?status=success");
-exit;
-
-
+}
