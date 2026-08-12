@@ -1,106 +1,145 @@
 # Lagerverwaltung
 
-
-
-
 ## Beschreibung
 
-Dieses Projekt ist eine webbasierte Lagerverwaltung, die mit HTML, CSS, PHP und MySQL entwickelt wurde.
+Dieses Projekt ist eine Lagerverwaltung, die mit HTML, CSS, PHP und MySQL entwickelt wurde.
 
-Mit der Anwendung können Artikel angelegt, angezeigt, bearbeitet und gelöscht werden. Zusätzlich wurde eine Suchfunktion implementiert, mit der Artikel anhand ihrer Artikelnummer oder ihres Namens gefunden werden können.
+Mit der Anwendung können Artikel angelegt, angezeigt, gesucht, bearbeitet und gelöscht werden.
 
-Die Anwendung enthält serverseitige Validierungen, Fehlerbehandlung und Maßnahmen zur sicheren Verarbeitung und Ausgabe von Daten.
-
-
-
-## Validierung und Sicherheit
-- Prepared Statements:  Schützen Datenbankabfragen vor SQL-Injection, indem SQL-Befehle und übergebene Werte getrennt verarbeitet werden.
-
-- UNIQUE:  Verhindert, dass dieselbe Artikelnummer mehrfach in der Datenbank gespeichert werden kann.
-
-- Serverseitige Validierung: Prüft Eingaben vor dem Speichern oder Aktualisieren. Pflichtfelder dürfen nicht leer sein und der Lagerbestand darf nicht negativ werden. Ein Bestand von `0` ist erlaubt.Prüft Eingaben vor dem Speichern oder Aktualisieren. Pflichtfelder dürfen nicht leer sein und der Lagerbestand darf nicht negativ werden. Ein Bestand von `0` ist erlaubt.
-- htmlspecialchars(): Sorgt dafür, dass eingegebener HTML-Code bei der Ausgabe als Text dargestellt und nicht vom Browser als HTML interpretiert wird.
-
+Das Projekt wurde entwickelt, um den grundlegenden Aufbau einer datenbankgestützten Webanwendung sowie die Umsetzung der CRUD-Operationen praktisch zu verstehen.
 
 ## Funktionen
+
 - Artikel anlegen
 - Alle Artikel anzeigen
 - Artikel suchen
 - Artikel bearbeiten
 - Artikel löschen
+- Prüfung auf doppelte Artikelnummern
+- Serverseitige Validierung von Eingaben
+- Status- und Fehlermeldungen
 
 ## Technologien
 
 - HTML
+- CSS
 - PHP
 - MySQL
 - SQL
 
-## Was habe ich gelernt?
+## CRUD
 
-- CRUD-Anwendungen entwickeln (Create, Read, Update, Delete)
-- SQL-Abfragen erstellen (`SELECT`, `INSERT`, `UPDATE`, `DELETE`)
-- HTML-Formulare mit PHP und MySQL verbinden
-- Daten mit `$_POST` und `$_GET` zwischen Seiten übertragen
-- Mit Prepared Statements sicher auf Datenbanken zugreifen
-- Den Ablauf von `prepare()`, `bind_param()` und `execute()` anwenden
-- Daten mit `fetch_assoc()` aus der Datenbank auslesen
-- Suchergebnisse mit `while` dynamisch ausgeben
-- Eine zentrale Datenbankverbindung mit `db.php` und `require_once` verwenden
-- Benutzereingaben serverseitig validieren
-- Fachliche Regeln umsetzen, z. B. einen Lagerbestand von `0` erlauben, aber negative Bestände verhindern
-- Doppelte Artikelnummern mit einem `UNIQUE`-Constraint verhindern
-- Datenbankfehler mit `try`, `catch` und `mysqli_sql_exception` kontrolliert behandeln
-- MySQL-Fehlercodes mit `$e->getCode()` unterscheiden
-- Statusinformationen über `$_GET` und Redirects an andere Seiten übergeben
-- Mit `htmlspecialchars()` Daten sicher in HTML ausgeben
-- Den Unterschied zwischen SQL-Injection-Schutz und sicherer HTML-Ausgabe verstehen
-- Mit `$result->num_rows` prüfen, ob eine Datenbankabfrage Ergebnisse geliefert hat
-- Anwendungen systematisch testen und Fehler entlang des Datenflusses suchen
+Die Anwendung bildet die vier grundlegenden CRUD-Operationen ab:
 
-## Nächste Schritte
+- **Create** – neue Artikel anlegen
+- **Read** – Artikel anzeigen und suchen
+- **Update** – bestehende Artikel bearbeiten
+- **Delete** – Artikel löschen
 
-- Benutzeroberfläche und Design verbessern
-- Erfolg- und Fehlermeldungen benutzerfreundlicher darstellen
-- Code weiter strukturieren und wiederkehrende Logik reduzieren
-- Bestandsverwaltung um weitere Funktionen erweitern
-- Kategorien oder weitere Lagerinformationen ergänzen
-- Projektdokumentation weiter ausbauen
+## Datenbankzugriff
 
+Die Verbindung zur MySQL-Datenbank wird zentral über eine `db.php` hergestellt.
 
+Andere PHP-Dateien können diese Verbindung mit `require_once` einbinden. Dadurch muss die Datenbankverbindung nicht in jeder Datei erneut erstellt werden.
+
+## Prepared Statements
+
+Für Datenbankabfragen werden Prepared Statements verwendet.
+
+Dabei werden SQL-Befehl und übergebene Werte voneinander getrennt. Dadurch wird unter anderem das Risiko von SQL-Injection reduziert.
+
+Verwendeter Ablauf:
+
+1. `prepare()`
+2. `bind_param()`
+3. `execute()`
+
+## Serverseitige Validierung
+
+Eingaben werden auf dem Server geprüft, bevor Daten gespeichert oder verändert werden.
+
+Dabei wird unter anderem geprüft:
+
+- Name darf nicht leer sein
+- Lagerort darf nicht leer sein
+- Bestand darf nicht kleiner als `0` sein
+- Ein Bestand von `0` ist erlaubt
+- Ungültige Eingaben werden nicht in der Datenbank gespeichert
+
+## Doppelte Artikelnummern
+
+Artikelnummern sollen eindeutig sein.
+
+Durch eine entsprechende Prüfung bzw. Einschränkung in der Datenbank wird verhindert, dass dieselbe Artikelnummer mehrfach gespeichert wird.
+
+## Sichere HTML-Ausgabe
+
+Bei der Ausgabe von Daten wird `htmlspecialchars()` verwendet.
+
+Dadurch werden bestimmte Sonderzeichen umgewandelt, sodass eingegebener HTML-Code bei der Ausgabe nicht direkt als HTML interpretiert wird.
+
+## Fehlerbehandlung
+
+Für bestimmte Datenbankoperationen wird Fehlerbehandlung mit `try` und `catch` verwendet.
+
+Dadurch können auftretende Fehler kontrolliert behandelt werden, anstatt die Anwendung unkontrolliert abbrechen zu lassen.
+
+## Datenübertragung
+
+Die Anwendung verwendet unter anderem:
+
+- `$_POST` für Daten aus Formularen
+- `$_GET` für Informationen aus der URL, beispielsweise Suchanfragen oder Statusmeldungen
+
+## Daten auslesen
+
+Datenbankergebnisse werden unter anderem mit `fetch_assoc()` ausgelesen.
+
+Bei mehreren Datensätzen kann dies innerhalb einer `while`-Schleife erfolgen.
+
+Mit `num_rows` kann geprüft werden, wie viele Datensätze eine Abfrage zurückgegeben hat.
 
 ## Projektstruktur
 
-```text
-011_Lagerverwaltung/
-│
-├── README.md
-│
-└── src/
-    ├── db.php
-    ├── index.php
-    ├── save_article.php
-    ├── lagerbestand.php
-    ├── bearbeiten.php
-    └── delete_article.php
-```
+Der eigentliche Anwendungscode befindet sich im Ordner `src`.
 
-### Aufgaben der Dateien
+Wichtige Dateien sind unter anderem:
 
-- **`db.php`**  
-  Enthält zentral die Verbindung zur MySQL-Datenbank und wird über `require_once` in den benötigten PHP-Dateien eingebunden.
+- `index.php` – Eingabe neuer Artikel
+- `save_article.php` – Verarbeitung und Speicherung neuer Artikel
+- `lagerbestand.php` – Anzeige und Suche des Lagerbestands
+- `bearbeiten.php` – Bearbeitung vorhandener Artikel
+- `delete_article.php` – Löschen von Artikeln
+- `db.php` – zentrale Datenbankverbindung
+- `style.css` – grundlegende Darstellung der Anwendung
 
-- **`index.php`**  
-  Enthält das Formular zum Anlegen neuer Artikel und zeigt Statusmeldungen nach dem Speichern an.
+## Was habe ich gelernt?
 
-- **`save_article.php`**  
-  Verarbeitet neue Artikel, validiert die Eingaben und speichert gültige Datensätze über ein Prepared Statement in der Datenbank.
+Durch dieses Projekt habe ich unter anderem gelernt:
 
-- **`lagerbestand.php`**  
-  Liest die gespeicherten Artikel aus der Datenbank aus, stellt sie in einer Tabelle dar und enthält die Suchfunktion.
+- CRUD-Anwendungen grundlegend aufzubauen
+- HTML-Formulare mit PHP zu verarbeiten
+- PHP mit einer MySQL-Datenbank zu verbinden
+- SQL-Abfragen mit `SELECT`, `INSERT`, `UPDATE` und `DELETE` einzusetzen
+- Prepared Statements mit `prepare()`, `bind_param()` und `execute()` zu verwenden
+- Daten mit `fetch_assoc()` auszulesen
+- Datenbankergebnisse mit `num_rows` zu prüfen
+- Eingaben serverseitig zu validieren
+- Ausgaben mit `htmlspecialchars()` sicherer darzustellen
+- Datenbankverbindungen zentral auszulagern
+- PHP-Dateien mit `require_once` einzubinden
+- Fehler mit `try` und `catch` zu behandeln
+- den vollständigen Ablauf zwischen Browser, PHP, SQL und Datenbank besser zu verstehen
 
-- **`bearbeiten.php`**  
-  Lädt einen vorhandenen Artikel und ermöglicht das Aktualisieren seiner Daten. Die Eingaben werden vor dem Update serverseitig validiert.
+## Nächste Schritte
 
-- **`delete_article.php`**  
-  Löscht den ausgewählten Artikel über seine Artikelnummer aus der Datenbank.
+Das Projekt dient weiterhin als Lernprojekt und kann zukünftig erweitert werden.
+
+Mögliche Erweiterungen:
+
+- Benutzeranmeldung und Rechteverwaltung
+- Kategorien für Artikel
+- Erweiterte Lagerplatzverwaltung
+- Verbesserung der Benutzeroberfläche
+- Weitere Validierungen
+- Ausbau der Fehlerbehandlung
