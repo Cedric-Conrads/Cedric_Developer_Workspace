@@ -4,7 +4,7 @@ Mein persönlicher Lern- und Entwicklungsworkspace zur Vorbereitung und Begleitu
 
 ## Über mich
 
-Am 17.08.2026 beginne ich meine Umschulung bei bei COMCAVE in Dortmund zum Fachinformatiker für Anwendungsentwicklung.
+Am 17.08.2026 beginne ich meine Umschulung  bei COMCAVE in Dortmund zum Fachinformatiker für Anwendungsentwicklung.
 
 Bereits vor Beginn meiner Umschulung habe ich mich intensiv mit den Grundlagen der Anwendungsentwicklung beschäftigt. Mir war dabei besonders wichtig zu verstehen, wie Anwendungen grundsätzlich funktionieren und wie die einzelnen Bestandteile zusammenspielen.
 
